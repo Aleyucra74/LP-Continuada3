@@ -1,11 +1,9 @@
 package com.mycompany.lp.continuada3;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ConexaoBanco {
-
+ 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost/Continuada3?useTimezone=true&serverTimezone=UTC";
     private static final String USER = "root";
@@ -28,7 +26,7 @@ public class ConexaoBanco {
         }
         return conn;
     }
-    
+       
     public void desconectar(Connection conn){
         try {
             if(conn != null && !conn.isClosed()) {

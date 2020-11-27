@@ -5,5 +5,6 @@ create table alunos(
 	nome varchar(50),
 	escola varchar(50),
 	materia varchar(50),
-	professor varchar(50)
+	professor varchar(50),
+	tipo varchar(50)
 )
