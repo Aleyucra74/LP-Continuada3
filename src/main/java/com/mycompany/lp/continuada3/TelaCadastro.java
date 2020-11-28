@@ -111,7 +111,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtFldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cmbBxEnsino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -127,9 +127,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(txtFldMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblMessage)
-                                            .addComponent(jLabel6))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(lblMessage))
                                         .addGap(18, 18, 18)
                                         .addComponent(txtFldProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -144,7 +144,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -165,7 +165,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(txtFldProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnCadastrar)
                     .addComponent(lblMessage))
                 .addGap(30, 30, 30))
@@ -184,8 +184,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-        ConexaoBanco conexao = new ConexaoBanco();
-        Connection conn = 
+        DadosBanco cons = new DadosBanco();
         
         String nomeAluno = txtFldNome.getText();
         String escola = txtFldEscola.getText();
@@ -197,12 +196,24 @@ public class TelaCadastro extends javax.swing.JFrame {
         Aluno alunoMedio = new Medio(nomeAluno, escola, materia, professor, tipo);
         Aluno alunoSuperior = new Superior(nomeAluno, escola, materia, professor, tipo);
         
-        if (tipo.equals("Fundamental")) {
-            alunoFundamental.message(cmbBxEnsino.getSelectedItem().toString());
-            lblMessage.setText(alunoFundamental.mensagem);
-            conn.exe
-        }else if(tipo.equals("Fundamental")) {
-        
+        switch (tipo) {
+            case "Fundamental":
+                alunoFundamental.message(cmbBxEnsino.getSelectedItem().toString());
+                lblMessage.setText(String.format("Cadastrado como aluno de %s",alunoFundamental.mensagem));
+                cons.cadastrar(alunoFundamental);
+                break;
+            case "Medio":
+                alunoFundamental.message(cmbBxEnsino.getSelectedItem().toString());
+                lblMessage.setText(String.format("Cadastrado como aluno de %s",alunoMedio.mensagem));
+                cons.cadastrar(alunoMedio);
+                break;
+            case "Superior":        
+                alunoFundamental.message(cmbBxEnsino.getSelectedItem().toString());
+                lblMessage.setText(String.format("Cadastrado como aluno de %s",alunoSuperior.mensagem));
+                cons.cadastrar(alunoSuperior);
+                break;
+            default:
+                break;
         }
 
         
