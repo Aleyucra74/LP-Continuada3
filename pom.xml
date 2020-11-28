@@ -22,7 +22,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.mycompany.programajava.ProgramaJava</mainClass>
+                            <mainClass>com.mycompany.lp.continuada3.TelaCadastro</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
