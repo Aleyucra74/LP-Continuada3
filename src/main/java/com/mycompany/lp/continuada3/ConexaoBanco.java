@@ -5,9 +5,9 @@ import java.sql.*;
 public class ConexaoBanco {
  
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost/Continuada3?useTimezone=true&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost/continuada3?useTimezone=true&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASS = "123";
+    private static final String PASS = "urubu100";
   
     public static void main(String[] args) {
         ConexaoBanco conexao = new ConexaoBanco();
