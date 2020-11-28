@@ -5,6 +5,8 @@
  */
 package com.mycompany.lp.continuada3;
 
+import java.sql.Connection;
+
 /**
  *
  * @author alexa
@@ -39,7 +41,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         txtFldMateria = new javax.swing.JTextField();
         txtFldProfessor = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbBxEnsino = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         lblMessage = new javax.swing.JLabel();
 
@@ -85,7 +87,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Cadastro de novo aluno");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fundamental", "Medio", "Superior" }));
+        cmbBxEnsino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fundamental", "Medio", "Superior" }));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Grau:");
@@ -112,7 +114,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmbBxEnsino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -148,7 +150,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtFldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbBxEnsino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -182,7 +184,27 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
+        ConexaoBanco conexao = new ConexaoBanco();
+        Connection conn = 
         
+        String nomeAluno = txtFldNome.getText();
+        String escola = txtFldEscola.getText();
+        String materia = txtFldMateria.getText();
+        String professor = txtFldProfessor.getText();
+        String tipo = cmbBxEnsino.getSelectedItem().toString();
+        
+        Aluno alunoFundamental = new Fundamental(nomeAluno, escola, materia, professor, tipo);
+        Aluno alunoMedio = new Medio(nomeAluno, escola, materia, professor, tipo);
+        Aluno alunoSuperior = new Superior(nomeAluno, escola, materia, professor, tipo);
+        
+        if (tipo.equals("Fundamental")) {
+            alunoFundamental.message(cmbBxEnsino.getSelectedItem().toString());
+            lblMessage.setText(alunoFundamental.mensagem);
+            conn.exe
+        }else if(tipo.equals("Fundamental")) {
+        
+        }
+
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -223,7 +245,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbBxEnsino;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

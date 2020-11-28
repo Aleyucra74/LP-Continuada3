@@ -5,16 +5,16 @@ import java.sql.*;
 public class DadosBanco {
     static ConexaoBanco conexao = new ConexaoBanco();
 
-    public static void cadastrar(String nome, String escola, String materia, String professor, String tipo) {
+    public static void cadastrar(Aluno pessoa) {
         try {
             Connection conn = ConexaoBanco.getConnection();
             
             PreparedStatement query = conn.prepareStatement("insert into alunos(nome,escola,materia,professor,tipo) values (?,?,?,?,?)");
-            query.setString(1, nome);
-            query.setString(2, escola);
-            query.setString(3, materia);
-            query.setString(4, professor);
-            query.setString(5, tipo);
+            query.setString(1, pessoa.getNome());
+            query.setString(2, pessoa.getEscola());
+            query.setString(3, pessoa.getMateria());
+            query.setString(4, pessoa.getProfessor());
+            query.setString(5, pessoa.getTipo());
             query.execute();
 
             conexao.desconectar(conn);
